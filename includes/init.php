@@ -13,9 +13,11 @@ require_once("includes/PDO/easyCRUD/easyCRUD.class.php");
 // Mailer Class
 require_once('includes/mailer/PHPMailerAutoload.php');
 
-// Class to draw graphs
 require "includes/class/graph.php";
 require "includes/class/view.php";
 require "includes/class/tools.php";
 
 define("BASE", "http://$_SERVER[HTTP_HOST]");
+
+define("MYGMAILUSER", "email@gmail.com");
+define("MYGMAILPASSWORD", "password");

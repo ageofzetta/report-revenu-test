@@ -98,12 +98,11 @@
 
     public function sendEmail($message){
       
-      $when = date('l jS \of F Y h:i:s A');
-      $title ="$message Report Revenue generated on $when";
-
+      $title ="$message Report Revenue generated on ".date('l jS \of F Y h:i:s A');
       $body =  $this->renderEmail($title);
       $mail = new PHPMailer;
       $mail->CharSet = "UTF-8";
+      
       /*
       
       SMTP
@@ -111,11 +110,8 @@
       $mail->SMTPDebug = 1;
 
       If you do not want to use gmail's smtp remove next line
+      */
       
-
-      // We're Using Gmail's SMTP servers.
-      $myGmailUser = '';
-      $myGmailPassword = '';
 
       //Tell PHPMailer to use SMTP
 
@@ -130,8 +126,8 @@
       $mail->SMTPAuth = true;
 
       // Authenticate, if having troubles check https://support.google.com/mail/answer/78754
-      $mail->Username   = $myGmailUser;
-      $mail->Password   = $myGmailPassword;
+      $mail->Username   = MYGMAILUSER;
+      $mail->Password   = MYGMAILPASSWORD;
 
       // */      
       
@@ -139,7 +135,6 @@
       $mail->SetFrom('atapia@protonmail.ch', 'Alejandro Tapia');
       $mail->AddReplyTo("atapia@protonmail.ch","Alejandro Tapia");
       $mail->AddAddress('alejandro_tapia@outlook.com', "Alejandro Tapia");
-      $mail->AddAddress('ageofzetta@gmail.com', "Alejandro Tapia");
       $mail->Subject    = $title;
       $mail->Body= $body;
 
