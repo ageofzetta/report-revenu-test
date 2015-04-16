@@ -1,0 +1,80 @@
+
+#wrapper{
+	width:100%;
+}
+ 
+
+article{
+	width:700px;
+	margin: auto;
+}
+#graph{
+	margin: auto;
+	display: inherit;
+}
+
+ 
+hr{
+	clear: both;
+}
+h1,h2{
+	margin: 0; line-height:1.5;
+}
+.money{
+	font-family: monospace; text-align: right;
+}
+
+#wrapper{
+	header{
+		color:#FFF;
+		a{ color:#FFF;}
+		nav{
+			a{ font-size: 2em;}
+
+span.message{
+				line-height: 1em;
+  				font-size: 1.5em;
+  				display: inline-block;
+  				padding: .5ex;
+  				background: white;
+  				color: black;
+  				margin-left: .5ex;
+  			}
+
+		}
+		form{
+			width:100%;
+			.inputs{
+				display: inline-block;
+				width: auto;
+				margin: 0; padding: 0;
+				select{
+					display: inline-block;
+					height: 2.24em;
+				}
+			}
+			.submit_btn{
+				padding: 1ex 1em;
+			}
+		}
+		h1,h2{
+			color:#FFF;
+		}
+	}
+	h1{
+		small{
+			font-size: 1.2ex;
+			strong{
+				text-transform: uppercase;
+				font-weight: 100;
+				font-family: inherit;
+			}
+		}
+	}
+}
+
+.mailSend{
+	&:hover{
+		background-color: #37610C !important;
+	} 
+}

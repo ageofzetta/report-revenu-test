@@ -1,0 +1,8 @@
+{
+    "require": {
+        "bento/bento": "@stable",
+        "twig/twig": "~1.0",
+        "php-console/php-console": "3.*"
+    }
+
+}

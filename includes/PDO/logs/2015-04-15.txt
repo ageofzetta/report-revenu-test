@@ -1,0 +1,3 @@
+Time : 19:14:36
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'revenue_report.productz' doesn't exist
+Raw SQL : SELECT * FROM productz ORDER BY `date` ASC
