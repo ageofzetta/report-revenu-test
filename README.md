@@ -23,7 +23,7 @@ Clone the repo or unzip in
 
 	/var/www/html/
 
-** Save the next as prepare.sh **
+**Save the next as prepare.sh**
 
 	echo -e "\n--- Configurando Apache ---\n"
 	sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
@@ -50,7 +50,12 @@ Clone the repo or unzip in
 	sudo ufw enable
 	reboot
 
-** And finally enter in terminal: **
+**Enter in terminal:**
 
 	sh prepare.sh
 
+**After reboot import the following file:**
+
+	./includes/revenue_report_2015-04-13.sql
+	
+**into a database called revenue_report**
