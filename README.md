@@ -11,13 +11,13 @@ If using gmail's SMTP update access credentials on:
 
 	./includes/init.php
 	
-Otherwise remove line 115 of 
+Otherwise remove line 134 of 
 	
 	./includes/class/view.php:
 
 *paths relative to project*
 
-# Instructions for Ubuntu LAMP
+# Instructions if having troubles with  Ubuntu (LAMP installed)
 
 Clone the repo or unzip in
 

@@ -111,11 +111,46 @@ post('/product/delete/<#:id>', function($id)
     $deleted = $db->query("DELETE FROM products WHERE `id` = :id ",array('id'=>"$id"));
 	echo "deleted"; 
 });
-get('/product/edit/<#:id>/', function($id)
+
+form('/product/edit/<#:id>/', function($id)
 {
-	$id = Utils::prepareString($id);			// prepares string for query -> includes/class/tools.php
-    $db = new Db(); 							// Instantiate Db class wrapper 
-	echo "deleted"; 
+	 if (request_method('POST')) {
+    	// Escape POST info
+		$productName = Utils::friendlyPost($_POST['product']);
+		$productName = Utils::prepareString($productName);
+		$client = Utils::friendlyPost($_POST['client']);
+		$client = Utils::prepareString($client);
+		$total = Utils::friendlyPost($_POST['total']);
+		$date = Utils::friendlyPost($_POST['date']);
+		$db = new Db(); 							// Instantiate Db class wrapper 
+	    $productRow = $db->row("SELECT * FROM products WHERE `id` = :id ",array('id'=>"$id"));
+	    $clients = $db->query("SELECT * FROM clients");
+		if (!$productRow || !$clients) {
+			myResponse::renderError(csrf_field(), "There is no record of that sale anymore.");
+		}
+		if(!$productName || !$client || !$total || !is_numeric($total) || !strtotime ($date)) {
+				myResponse::renderEdit(csrf_field(), $productRow, $clients, "Please enter all required fields correctly.");
+    	}else{
+    		$updatedProduct = $db->query("UPDATE products SET `client` = :client, `product` =:productName, `total` =:total, `date` =:newDate WHERE `id` = :id", array('client' => $client, 'productName' => $productName, 'total' => $total, 'newDate' => $date, 'id' => $id ));
+    		$id = Utils::prepareString($id);			// prepares string for query -> includes/class/tools.php
+	    	$db = new Db(); 							// Instantiate Db class wrapper 
+	    	$productRow = $db->row("SELECT * FROM products WHERE `id` = :id ",array('id'=>"$id"));
+	    	$clients = $db->query("SELECT * FROM clients");
+	    	myResponse::renderEdit(csrf_field(), $productRow, $clients, "Record updated succesfully.");
+    		
+    	}
+
+    }else{
+		$id = Utils::prepareString($id);			// prepares string for query -> includes/class/tools.php
+	    $db = new Db(); 							// Instantiate Db class wrapper 
+	    $productRow = $db->row("SELECT * FROM products WHERE `id` = :id ",array('id'=>"$id"));
+	    $clients = $db->query("SELECT * FROM clients");
+		if ($productRow && $clients) {
+			myResponse::renderEdit(csrf_field(), $productRow, $clients);
+		}else{
+			myResponse::renderError(csrf_field(), "There is no record of that sale anymore.");
+		}
+	}
 });
 
 form('/search/', function()

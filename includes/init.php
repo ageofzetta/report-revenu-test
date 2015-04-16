@@ -17,6 +17,8 @@ require "includes/class/graph.php";
 require "includes/class/view.php";
 require "includes/class/tools.php";
 
+
+
 define("BASE", "http://$_SERVER[HTTP_HOST]");
 
 define("MYGMAILUSER", "email@gmail.com");

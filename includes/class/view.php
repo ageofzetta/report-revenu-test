@@ -57,6 +57,27 @@
       $template = $twig->loadTemplate('error.php');
       // Render the result
       echo $template->render(array( 'csrf' => $csrf_field,  'message' => "$message. $query"));
+      exit();
+    
+    }
+    public static function renderEdit($csrf_field, $product, $clients, $message = false)
+    {   
+      /* I use Twig as template engine
+      http://twig.sensiolabs.org/documentation */
+
+      /// Initialize Twig
+      $loader = new Twig_Loader_Filesystem('includes/templates');
+      
+      //For Developement
+      $twig = new Twig_Environment($loader, array(
+        'cache' => false,  'debug' => true,
+      ));
+      $twig->addExtension(new Twig_Extension_Debug());
+      //For Developement
+      // Start twig using the following template
+      $template = $twig->loadTemplate('edit.php');
+      // Render the result
+      echo $template->render(array( 'csrf' => $csrf_field,  'product' => $product, 'clients' => $clients, 'message' => $message ));
 		
     }
     
@@ -98,22 +119,20 @@
 
     public function sendEmail($message){
       
-      $title ="$message Report Revenue generated on ".date('l jS \of F Y h:i:s A');
+      $when = date('l jS \of F Y h:i:s A');
+      $title ="$message Report Revenue generated on $when";
+
       $body =  $this->renderEmail($title);
       $mail = new PHPMailer;
       $mail->CharSet = "UTF-8";
-      
       /*
       
       SMTP
       if you have troubles enable debugging:
       $mail->SMTPDebug = 1;
-
-      If you do not want to use gmail's smtp remove next line
-      */
       
+      */
 
-      //Tell PHPMailer to use SMTP
 
       $mail->isSMTP();
       //Set the hostname of the mail server
@@ -132,10 +151,11 @@
       // */      
       
       $mail->isHTML(true);  
-      $mail->SetFrom('atapia@protonmail.ch', 'Alejandro Tapia');
-      $mail->AddReplyTo("atapia@protonmail.ch","Alejandro Tapia");
+      $mail->SetFrom('alejandro_tapia@outlook.com', 'Alejandro Tapia');
+      $mail->AddReplyTo("alejandro_tapia@outlook.com","Alejandro Tapia");
       $mail->AddAddress('alejandro_tapia@outlook.com', "Alejandro Tapia");
-      $mail->Subject    = $title;
+
+      $mail->Subject = $title;
       $mail->Body= $body;
 
       if (!$mail->send()) {

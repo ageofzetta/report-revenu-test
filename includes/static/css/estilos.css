@@ -12757,7 +12757,7 @@ a {
   width: 100%; }
 
 article {
-  width: 700px;
+  max-width: 700px;
   margin: auto; }
 
 #graph {
@@ -12777,6 +12777,9 @@ h1, h2 {
 
 #wrapper header {
   color: #FFF; }
+  #wrapper header .content {
+    max-width: 700px;
+    margin: auto; }
   #wrapper header a {
     color: #FFF; }
   #wrapper header nav a {

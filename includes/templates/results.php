@@ -18,7 +18,7 @@
 			{% set total = 0 %}
 			{% for product in products %}
 			<tr>
-		    	<td><a href="/client/{{product.client}}/">{{product.client}}</a></td>
+		    	<td><strong>{{product.client}}</strong></td>
 		    	<td>{{product.product}}</td>
 		    	<td class="money">$ {{product.total|number_format(2, '.', ',')}}</td>
 		    	<td>{{product.date|date("m/d/Y")}}</td>
