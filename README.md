@@ -2,16 +2,23 @@
 
 #### MySQL
 
+Import the following file to a database:
+
+		./includes/SQL/revenue_report_2015-04-13.sql
+
 Add correct access credentials on
 
-	./includes/PDO/settings.ini.php
+		./includes/PDO/settings.ini.php
+
+
+		
 
 #### SMTP
 If using gmail's SMTP update access credentials on:
 
 	./includes/init.php
 	
-Otherwise remove line 134 of 
+Otherwise, to use built-in mail server, remove line 134 of 
 	
 	./includes/class/view.php:
 
@@ -19,7 +26,7 @@ Otherwise remove line 134 of
 
 # Instructions if having troubles with  Ubuntu (LAMP installed)
 
-Clone the repo or unzip in
+Clone the repo or unzip to
 
 	/var/www/html/
 
@@ -54,8 +61,3 @@ Clone the repo or unzip in
 
 	sh prepare.sh
 
-**After reboot import the following file:**
-
-	./includes/revenue_report_2015-04-13.sql
-	
-**into a database called revenue_report**
